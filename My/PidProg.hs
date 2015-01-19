@@ -1,5 +1,5 @@
 {-# LANGUAGE RecordWildCards #-}
-module PidProg where
+module My.PidProg where
 
 import Codec.Binary.UTF8.String
 import Control.Applicative

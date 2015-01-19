@@ -1,9 +1,9 @@
-module Brightness where
+module My.Brightness where
 
 import Control.Applicative
 import XMonad
 
-import Common
+import My.Common
 
 raiseBrightnessByPercent :: (Functor m,MonadIO m) => Int -> m ()
 raiseBrightnessByPercent = changeBrightnessByPercent

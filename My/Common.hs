@@ -1,4 +1,4 @@
-module Common where
+module My.Common where
 
 addTotalPercentsInBounds :: Integral a => a -> a -> a -> a -> a
 addTotalPercentsInBounds totalMin totalMax percent = bounds . (+ change)

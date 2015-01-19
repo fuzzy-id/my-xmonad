@@ -1,6 +1,6 @@
 {-# LANGUAGE TupleSections #-}
 {-# LANGUAGE RecordWildCards #-}
-module Pulse where
+module My.Pulse where
 
 import Control.Applicative
 import Data.Function
@@ -10,7 +10,7 @@ import XMonad
 import XMonad.Util.Run
 import qualified Text.Parsec as P
 
-import Common
+import My.Common
 
 data PulseItem = Sink { sinkName    :: String
                       , sinkDefault :: Bool

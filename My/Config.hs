@@ -1,4 +1,4 @@
-module MyConfig where
+module My.Config where
 
 import Control.Applicative
 import Data.Char
@@ -17,9 +17,9 @@ import XMonad.Prompt
 import XMonad.Prompt.Window
 import XMonad.Prompt.Shell
 
-import Brightness
-import PidProg
-import Pulse
+import My.Brightness
+import My.PidProg
+import My.Pulse
 
 myMain :: IO ()
 myMain = do setNeoLayout
