@@ -4,7 +4,6 @@ module Test.Pulse where
 
 import Control.Applicative
 import Control.Concurrent
-import Control.Monad
 import Control.Exception
 import Data.Function
 import Data.List
