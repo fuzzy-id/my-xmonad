@@ -11,7 +11,9 @@ import My.PidProg
 tests = $(testGroupGenerator)
 
 case_doesPidProgRun_on_own_pid :: Assertion
-case_doesPidProgRun_on_own_pid = getProcessID >>= doesPidProgRun >>= (@=? True)
+case_doesPidProgRun_on_own_pid = 
+  getProcessID >>= doesPidProgRun >>= (@=? True)
 
 case_doesPidProgRun_on_non_existent_pid :: Assertion
-case_doesPidProgRun_on_non_existent_pid = doesPidProgRun (-1) >>= (@=? False)
+case_doesPidProgRun_on_non_existent_pid = 
+  doesPidProgRun (-1) >>= (@=? False)
