@@ -13,8 +13,8 @@ import Test.Tasty
 import Test.Tasty.TH
 import Test.Tasty.HUnit
 
-import Pulse
-import PidProg
+import My.Pulse
+import My.PidProg
 
 main :: IO ()
 main = defaultMain tests

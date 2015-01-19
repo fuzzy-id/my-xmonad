@@ -53,6 +53,14 @@ test-suite tasty
   ghc-options: -Wall -fno-warn-orphans
   build-depends:
                 base
+              , containers
+              , directory
+              , filepath
+              , process
+              , unix
+              , utf8-string
+              , xmonad
+              , xmonad-contrib
               , my-xmonad
               , parsec
               , tasty       >= 0.10 && < 0.11
