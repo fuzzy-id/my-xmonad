@@ -1,3 +1,4 @@
+{-# LANGUAGE NoMonomorphismRestriction #-}
 {-# LANGUAGE TupleSections #-}
 {-# LANGUAGE RecordWildCards #-}
 module My.Pulse where
@@ -123,13 +124,14 @@ pSinkRelated = P.try pSinkMute
 pSinkDefault = (,(\s -> s {sinkDefault = True}))
                <$> (P.string "set-default-sink "
                     *> P.many (P.noneOf "\n"))
-pSinkMute = P.string "set-sink-mute "
-            *> ((,) <$>  P.anyChar `P.manyTill` P.space)
-            <*> ((\m s -> s {sinkMute = m }) <$> pYesOrNo)
-pSinkVolume = P.string "set-sink-volume "
-              *> ((,) <$>  P.anyChar `P.manyTill` P.string " 0x")
-              <*> ((\v s -> s {sinkVolume = v}) . readHex
-                   <$> P.many P.alphaNum)
+pSinkMute = (\n m -> (n,\s -> s {sinkMute = m})) 
+            <$> (P.string "set-sink-mute " *> P.anyChar `P.manyTill` P.space)
+            <*> pYesOrNo
+pSinkVolume = (\n v -> (n,\s -> s {sinkVolume = v}))
+              <$> (P.string "set-sink-volume " *> P.anyChar `P.manyTill` P.string " 0x")
+              <*> pHex
+pHex = readHex <$> P.many P.alphaNum
+pName = P.many (P.noneOf " \n")
 
 pYesOrNo = pYes P.<|> pNo
 pYes = const True <$> P.string "yes"
