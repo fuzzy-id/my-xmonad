@@ -122,13 +122,12 @@ pSinkRelated = P.try pSinkMute
                P.<|> (P.many (P.noneOf "\n") *> pure (sinkName defaultPulseItem,id))
 
 pSinkDefault = (,(\s -> s {sinkDefault = True}))
-               <$> (P.string "set-default-sink "
-                    *> P.many (P.noneOf "\n"))
+               <$> (P.string "set-default-sink " *> pName)
 pSinkMute = (\n m -> (n,\s -> s {sinkMute = m})) 
-            <$> (P.string "set-sink-mute " *> P.anyChar `P.manyTill` P.space)
+            <$> (P.string "set-sink-mute " *> pName <* P.space)
             <*> pYesOrNo
 pSinkVolume = (\n v -> (n,\s -> s {sinkVolume = v}))
-              <$> (P.string "set-sink-volume " *> P.anyChar `P.manyTill` P.string " 0x")
+              <$> (P.string "set-sink-volume " *> pName <* P.string " 0x")
               <*> pHex
 pHex = readHex <$> P.many P.alphaNum
 pName = P.many (P.noneOf " \n")
