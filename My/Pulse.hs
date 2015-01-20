@@ -101,7 +101,8 @@ spawnPactl = spawn . unwords . ("pactl":)
 createSinks :: [(String,PulseItem -> PulseItem)] -> [PulseItem]
 createSinks = map createSink . groupBySinkName
   where createSink l@((name,_):_) =
-          foldr ($) defaultPulseItem ((\s -> s {sinkName = name}):map snd l)
+          foldr ($) (defaultPulseItem {sinkName = name}) (map snd l)
+        createSink [] = undefined -- this should not happen
 
 groupBySinkName :: [(String, b)] -> [[(String, b)]]
 groupBySinkName =
