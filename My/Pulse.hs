@@ -127,9 +127,9 @@ pSinkMute = (\n m -> (n,\s -> s {sinkMute = m}))
             <$> (P.string "set-sink-mute " *> pName <* P.space)
             <*> pYesOrNo
 pSinkVolume = (\n v -> (n,\s -> s {sinkVolume = v}))
-              <$> (P.string "set-sink-volume " *> pName <* P.string " 0x")
+              <$> (P.string "set-sink-volume " *> pName <* P.space)
               <*> pHex
-pHex = readHex <$> P.many P.alphaNum
+pHex = readHex <$> (P.string "0x" *> P.many P.alphaNum)
 pName = P.many (P.noneOf " \n")
 
 pYesOrNo = pYes P.<|> pNo
